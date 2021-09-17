@@ -8,7 +8,7 @@ arr1 = ['AFG', 'Asia', 'Afghanistan', '2020-02-25', '5.0', '0.0', '', '', '', ''
 
 
 def lastline():
-    with open('../owid-covid-data.csv', mode='r') as csv_file:
+    with open('owid-covid-data.csv', mode='r') as csv_file:
         arr = csv_file.readlines()[-1].split(',')
     return arr
 
@@ -19,7 +19,7 @@ for i, v in enumerate(arr, start=1):
 
 
 def write():
-    with open('../owid-covid-data.csv', mode='r') as csv_file:
+    with open('owid-covid-data.csv', mode='r') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
         mx = 2
