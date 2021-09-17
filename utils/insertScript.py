@@ -16,9 +16,9 @@ country_list = ['location', 'iso_code', 'continent']
 conn_string = 'postgresql://nakalaApi:nakala@127.0.0.1/nakala'
 herokuconn = 'postgresql://fnitjwitqtdejm:2620bc31af1bb6b60631b3d1eed6c6f11b9a2c72c1d9a7bcbadd60c59e9a1366@ec2-' \
              '34-196-238-94.compute-1.amazonaws.com:5432/db62abn7bicg5s'
-df = pd.read_csv('/app/owid-covid-data.csv', usecols=continent_list)
-df2 = pd.read_csv('/app/owid-covid-data.csv', usecols=country_list)
-df3 = pd.read_csv('/app/owid-covid-data.csv', parse_dates=['date'])
+df = pd.read_csv('../sample.csv', usecols=continent_list)
+df2 = pd.read_csv('../sample.csv', usecols=country_list)
+df3 = pd.read_csv('../sample.csv', parse_dates=['date'])
 
 print(df, df2)
 
@@ -28,7 +28,7 @@ df.to_sql('api_tempcontinent', con=conn, if_exists='replace', index=False)
 df2.to_sql('api_tempcountry', con=conn, if_exists='replace', index=False)
 df3.rename(columns={'location': 'country'}, inplace=True)
 df3.drop(columns=['iso_code', 'continent'], axis=1, inplace=True)
-df3.to_sql('api_tempdata', con=conn, index=False, if_exists='append', method='multi')
+df3.to_sql('api_tempdata', con=conn, index=False, if_exists='append')
 
 with db.begin() as cn:
     sql1 = """INSERT INTO api_continent (continent)
