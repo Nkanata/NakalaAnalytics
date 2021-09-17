@@ -84,7 +84,8 @@ DATABASES = {
         'USER': 'fnitjwitqtdejm',
         'PASSWORD': '2620bc31af1bb6b60631b3d1eed6c6f11b9a2c72c1d9a7bcbadd60c59e9a1366',
         'HOST': 'ec2-34-196-238-94.compute-1.amazonaws.com',
-        'PORT': '5432'
+        'PORT': '5432',
+
     }
 }
 
