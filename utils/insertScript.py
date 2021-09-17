@@ -30,7 +30,7 @@ df3.drop(columns=['iso_code', 'continent'], axis=1, inplace=True)
 df3.to_sql('api_tempdata', con=conn, index=False, if_exists='append', method='multi')
 
 with db.begin() as cn:
-    sql = """INSERT INTO api_continent (continent)
+    sql1 = """INSERT INTO api_continent (continent)
             SELECT continent
             FROM api_tempcontinent t
             WHERE NOT EXISTS 
@@ -38,17 +38,18 @@ with db.begin() as cn:
                  WHERE t.continent = f.continent) ON CONFLICT (continent) DO NOTHING;
                  """
 
-    cn.execute(sql)
+    cn.execute(sql1)
 with db.begin() as cn:
-    sql = """INSERT INTO api_country (country, iso_code, continent_id)
+    sql2 = """INSERT INTO api_country (country, iso_code, continent_id)
             SELECT location, iso_code, ac.id FROM api_tempcountry t 
             JOIN api_continent ac on t.continent = ac.continent
             WHERE NOT EXISTS (SELECT 1 FROM api_country f WHERE t.location = f.country  AND t.iso_code = f.iso_code 
             AND ac.id = f.continent_id)
             ON CONFLICT DO NOTHING;
                  """
+    cn.execute(sql2)
 with db.begin() as cn:
-    sql = """INSERT INTO api_data (date, total_cases, new_cases, new_cases_smoothed, total_deaths, new_deaths, 
+    sql3 = """INSERT INTO api_data (date, total_cases, new_cases, new_cases_smoothed, total_deaths, new_deaths, 
     new_deaths_smoothed, total_cases_per_million, new_cases_per_million, new_cases_smoothed_per_million, 
     total_deaths_per_million, new_deaths_per_million, new_deaths_smoothed_per_million, reproduction_rate, icu_patients, 
     icu_patients_per_million, hosp_patients, hosp_patients_per_million, weekly_icu_admissions, 
@@ -76,7 +77,7 @@ with db.begin() as cn:
     excess_mortality, ac.id FROM api_tempdata t 
             JOIN api_country ac on t.country = ac.country
             """
-    cn.execute(sql)
+    cn.execute(sql3)
 
 
 conn.close()
