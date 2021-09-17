@@ -75,14 +75,15 @@ WSGI_APPLICATION = 'NakalaAnalytics.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+herokuconn = 'postgres://fnitjwitqtdejm:2620bc31af1bb6b60631b3d1eed6c6f11b9a2c72c1d9a7bcbadd60c59e9a1366@ec2-34-' \
+             '196-238-94.compute-1.amazonaws.com:5432/db62abn7bicg5s'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'nakala',
-        'USER': 'nakalaApi',
-        'PASSWORD': 'nakala',
-        'HOST': '127.0.0.1',
+        'NAME': 'db62abn7bicg5s',
+        'USER': 'fnitjwitqtdejm',
+        'PASSWORD': '2620bc31af1bb6b60631b3d1eed6c6f11b9a2c72c1d9a7bcbadd60c59e9a1366',
+        'HOST': 'ec2-34-196-238-94.compute-1.amazonaws.com',
         'PORT': '5432'
     }
 }
