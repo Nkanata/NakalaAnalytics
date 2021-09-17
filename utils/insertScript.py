@@ -14,11 +14,11 @@ path2 = '/home/sage/PycharmProjects/NakalaAnalytics/owid-covid-data.csv'
 continent_list = ['continent']
 country_list = ['location', 'iso_code', 'continent']
 conn_string = 'postgresql://nakalaApi:nakala@127.0.0.1/nakala'
-herokuconn = 'postgres://fnitjwitqtdejm:2620bc31af1bb6b60631b3d1eed6c6f11b9a2c72c1d9a7bcbadd60c59e9a1366@ec2-34-196-238-' \
-             '94.compute-1.amazonaws.com:5432/db62abn7bicg5s'
-df = pd.read_csv(path2, usecols=continent_list)
-df2 = pd.read_csv(path2, usecols=country_list)
-df3 = pd.read_csv(path2, parse_dates=['date'])
+herokuconn = 'postgresql://fnitjwitqtdejm:2620bc31af1bb6b60631b3d1eed6c6f11b9a2c72c1d9a7bcbadd60c59e9a1366@ec2-' \
+             '34-196-238-94.compute-1.amazonaws.com:5432/db62abn7bicg5s'
+df = pd.read_csv('../owid-covid-data.csv', usecols=continent_list)
+df2 = pd.read_csv('../owid-covid-data.csv', usecols=country_list)
+df3 = pd.read_csv('../owid-covid-data.csv', parse_dates=['date'])
 
 print(df, df2)
 
