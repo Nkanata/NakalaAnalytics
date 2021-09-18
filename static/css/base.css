@@ -42,6 +42,12 @@ header a:active {
 .navbar{
     padding: 0 1rem;
 }
+.badge-dark {
+    color: #fff;
+    background-color: #343a40;
+}
 
-
+.badge-dark:hover{
+    color: white;
+}
 

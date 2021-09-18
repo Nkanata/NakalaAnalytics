@@ -1,7 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="welcome">Welcome to Nakala Interview Test.</h1>
-    <p class="intro container">This is a simple django application that registers a user, verify an email and Signs in and out a user and also
-        provides a simple data api endpoint. The api provides data if only the user is Authenticated.</p>
+    <h1 class="welcome">Welcome to Nakala Interview Test.</h1>
+    <p class="intro container">This is a simple django application Api based on the Requirements of Nakala
+        Analytics.</p>
+    <ul>
+        <h3>The Api Does the following:</h3>
+        <li>
+            Registers a user,
+        </li>
+        <li>
+            Verify an Email.
+        </li>
+        <li>
+            Signs in and out a User
+        </li>
+        <li>
+            Provides a simple data api endpoint. The api provides data only if the user is Authenticated.
+        </li>
+    </ul>
+    {% if user.is_authenticated %}
+    <div class="alert alert-dark">
+        <a  href="{% url 'api-root' %}" class="badge badge-dark">To the Browsable Api.</a>
+    </div>
+        {% else %}
+        <div class="alert alert-dark">
+        <a href="{% url 'signup' %}" class="badge badge-dark">Sign Up</a>
+        <a href="{% url 'login' %}" class="badge badge-dark">Sign In</a>
+        </div>
+    {% endif %}
 {% endblock content %}
